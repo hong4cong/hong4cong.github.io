@@ -36,9 +36,6 @@ sudo gem install jekyll
 * 注册[多说账号](http://duoshuo.com/)
 * 复制多说提供的代码，打开本地仓库_layouts/post.html文件粘贴代码
 
-####第3步：添加多说评论
-```
-<article class="post-content">
-    {{ content }}
-  </article>
-```
+![image](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.05/8753F661-D207-48CE-A442-D145E8D27E74.png)
+
+
