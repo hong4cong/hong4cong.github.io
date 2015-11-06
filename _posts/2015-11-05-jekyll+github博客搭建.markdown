@@ -14,4 +14,8 @@ categories: 随笔
 
 ###第1步：注册github并搭建Page
 1. 注册github账号
-2. 
+2. 新建Repository(仓库)
+<br>
+![image](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.05/0CDCD449-2BA2-4F8C-9523-ED880F7EAC33.png)
+<br>
+3. 修改Repository name输入`username.github.io`，username指的是你注册时的用户名
