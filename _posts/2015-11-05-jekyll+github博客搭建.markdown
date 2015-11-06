@@ -39,3 +39,6 @@ sudo gem install jekyll
 ![image](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.05/8753F661-D207-48CE-A442-D145E8D27E74.png)
 
 
+##结束
+* 鼓捣jekyll3.0，导致之前选的theme build不过，各种error！最后选的是[pithy](http://jekyllthemes.org/themes/pithy/) 一路顺畅
+
