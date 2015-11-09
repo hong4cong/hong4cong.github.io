@@ -18,7 +18,7 @@ categories: 随笔
 
 工具的安装比较简单，省略此过程
 
-####第1步：注册github账号，新建blog仓库
+##第1步：注册github账号，新建blog仓库
 1. 注册github账号
 2. 新建Repository(仓库)
 ![image](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.05/0CDCD449-2BA2-4F8C-9523-ED880F7EAC33.png)
@@ -29,10 +29,10 @@ categories: 随笔
 
 其实可以不通过新建Repository创建page，我们可以上[jekyllthemes](http://jekyllthemes.org/) fork一个github上jekyll主题模板，修改下Repository Name就可以了
 
-####第2步：安装jekyll
+##第2步：安装jekyll
 sudo gem install jekyll
 
-####第3步：添加多说评论
+##第3步：添加多说评论
 * 注册[多说账号](http://duoshuo.com/)
 * 复制多说提供的代码，打开本地仓库_layouts/post.html文件粘贴代码
 
