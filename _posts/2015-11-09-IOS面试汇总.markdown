@@ -64,7 +64,7 @@ Apple Push Notification Service
 
 ###15. 1000万字符串，其中有些是重复的，需要把重复的全部去掉，保留没有重复的字符串。请怎么设计和实现？
 方案1：这题用trie树比较合适，hash_map也应该能行。
-![image](../images/2015.11.09/d62a6059252dd42a745cc2c2033b5bb5c9eab806.jpg)
+![image](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/d62a6059252dd42a745cc2c2033b5bb5c9eab806.jpg)
 
 ###16. 如把字符串“abcdef”前面的2个字符'a'和'b'移动到字符串的尾部，使得原字符串变成字符串“cdefab”。请写一个函数完成此功能，要求对长度为n的字符串操作的时间复杂度为 O(n)，空间复杂度为 O(1)
 解法一：暴力移位法
