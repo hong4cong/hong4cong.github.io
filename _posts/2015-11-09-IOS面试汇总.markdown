@@ -269,4 +269,191 @@ KVC(Key-Value-Coding)内部的实现：一个对象在调用setValue的时候:
 
 （3）再直接查找得来的具体的方法实现。KVO（Key-Value- Observing）：当观察者为一个对象的属性进行了注册，被观察对象的isa指针被修改的时候，isa指针就会指向一个中间类，而不是真实的类。所以 isa指针其实不需要指向实例对象真实的类。所以我们的程序最好不要依赖于isa指针。在调用类的方法的时候，最好要明确对象实例的类名
 
-##45. 
+##45. 浅复制和深复制
+
+浅层复制：只复制指向对象的指针，而不复制引用对象本身。
+深层复制：复制引用对象本身
+
+##46. 类别和类扩展的区别
+
+category和extensions的不同在于 后者可以添加属性。另外后者添加的方法是必须要实现的。
+
+##47. 层和UIView的区别是什么
+
+两者最大的区别是,图层不会直接渲染到屏幕上，UIView是iOS系统中界面元素的基础，所有的界面元素都是继承自它。它本身完全是由CoreAnimation来实现的。它真正的绘图部分，是由一个CALayer类来管理。UIView本身更像是一个CALayer的管理器。一个UIView上可以有n个CALayer，每个layer显示一种东西，增强UIView的展现能力。
+
+##48. 进程与线程
+
+进程（process）是一块包含了某些资源的内存区域。操作系统利用进程把它的工作划分为一些功能单元。
+进程中所包含的一个或多个执行单元称为线程（thread）。进程还拥有一个私有的虚拟地址空间，该空间仅能被它所包含的线程访问。
+
+##49. masksToBounds属性的作用
+
+决定子layer是否被当前layer的边界剪切。默认是NO
+
+##50. GET和POST的区别
+
+1. GET请求的数据会附在URL之后，POST把提交的数据则放置在是HTTP包的包体中
+2. "GET方式提交的数据最多只能是1024字节，理论上POST没有限制，可传较大量的数据
+3. POST的安全性要比GET的安全性高
+
+##51. iOS使用ZipArchive压缩文件
+
+##52. 解决优先级翻转问题有优先级天花板(priority ceiling)和优先级继承(priority inheritance)两种办法
+
+优先级天花板是当任务申请某资源时， 把该任务的优先级提升到可访问这个资源的所有任务中的最高优先级， 这个优先级称为该资源的优先级天花板。这种方法简单易行， 不必进行复杂的判断， 不管任务是否阻塞了高优先级任务的运行， 只要任务访问共享资源都会提升任务的优先级。
+优先级继承是当任务A 申请共享资源S 时， 如果S正在被任务C 使用，通过比较任务C 与自身的优先级，如发现任务C 的优先级小于自身的优先级， 则将任务C的优先级提升到自身的优先级， 任务C 释放资源S 后，再恢复任务C 的原优先级。这种方法只在占有资源的低优先级任务阻塞了高优先级任务时才动态的改变任务的优先级，如果过程较复杂， 则需要进行判断。
+
+##53. NSRunLoop的使用场景
+
+Run Loop的使用场合：
+
+1. 使用port或是自定义的input source来和其他线程进行通信
+2. 在线程（非主线程）中使用timer
+3. 使用 performSelector...系列（如performSelectorOnThread, ...）
+4. 使用线程执行周期性工作
+在NSRunLoop中每一个消息就被打包在input source或者是timer source中了，当需要处理的时候就直接调用其中包含的相应对象的处理函数了
+
+##54. QuartzCore、CoreFoundation、CoreGraphics
+
+QuartzCore：iOS编程给用户视觉反馈其实都是通过QuartzCore框架来进行的，说白了，所有用户最终看到的显示界面都是图层合成的结果，而图层即是QuartzCore中的CALayer
+
+CoreFoundation：Core Foundation框架 (CoreFoundation.framework) 是一组C语言接口，它们为iOS应用程序提供基本数据管理和服务功能。下面列举该框架支持进行管理的数据以及可提供的服务：
+
+	▪	群体数据类型 (数组、集合等)
+	▪	程序包
+	▪	字符串管理
+	▪	日期和时间管理
+	▪	原始数据块管理
+	▪	偏好管理
+	▪	URL及数据流操作
+	▪	线程和RunLoop
+	▪	端口和soket通讯
+
+##55. iOS之线程间通信
+
+1. `performSelector`
+2. `gcd`
+  
+dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // 处理耗时操作的代码块...
+        
+        //通知主线程刷新
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //回调或者说是通知主线程刷新，
+        });
+        
+    });
+
+##56. category 和 extension区别
+
+1. 形式上来看，extension是匿名的category。
+2. extension里声明的方法需要在mainimplementation中实现，category不强制要求。
+3. extension可以添加属性（变量），category不可以。
+
+##57. viewController生命周期
+
+ViewController的生命周期中各方法执行流程如下：
+loadView和viewDidLoad的区别就是，loadView时view还没有生成，viewDidLoad时，view已经生成了，loadView只会被调用一次，而viewDidLoad可能会被调用多次（View可能会被多次加载），当view被添加到其他view中之前，会调用viewWillAppear，之后会调用viewDidAppear。当view从其他view中移除之前，调用viewWillDisAppear，移除之后会调用viewDidDisappear。当view不再使用时，受到内存警告时，ViewController会将view释放并将其指向为nil。
+
+init—>loadView—>viewDidLoad—>viewWillApper—>viewDidApper—>viewWillDisapper—>viewDidDisapper—>viewWillUnload->viewDidUnload—>dealloc
+
+##58. id与nil
+
+id和void *并非完全一样。在上面的代码中，id是指向struct objc_object的一个指针，这个意思基本上是说，id是一个指向任何一个继承了Object(或者NSObject)类的对象。需要注意的是id是一个指针，所以你在使用id的时候不需要加星号。比如id foo=nil定义了一个nil指针，这个指针指向NSObject的一个任意子类。而id *foo=nil则定义了一个指针，这个指针指向另一个指针，被指向的这个指针指向NSObject的一个子类。
+
+nil和C语言的NULL相同，在objc/objc.h中定义。nil表示一个Objctive-C对象，这个对象的指针指向空(没有东西就是空)。
+
+##59. ARC是在编译期管理内存，垃圾回收是运行期
+
+##60. ViewController 的loadView、viewDidLoad、viewDidUnload分别是什么时候调用的，在自定义ViewCointroller时在这几个函数中应该做什么工作？
+
+由init、loadView、viewDidLoad、viewDidUnload、dealloc的关系说起
+
+init方法
+在init方法中实例化必要的对象（遵从LazyLoad思想） init方法中初始化ViewController本身
+
+loadView方法
+当view需要被展示而它却是nil时，viewController会调用该方法。不要直接调用该方法。 如果手工维护views，必须重载重写该方法 如果使用IB维护views，必须不能重载重写该方法
+loadView和IB构建view 你在控制器中实现了loadView方法，那么你可能会在应用运行的某个时候被内存管理控制调用。 如果设备内存不足的时候， view 控制器会收到didReceiveMemoryWarning的消息。 默认的实现是检查当前控制器的view是否在使用。 如果它的view不在当前正在使用的view hierarchy里面，且你的控制器实现了loadView方法，那么这个view将被release, loadView方法将被再次调用来创建一个新的view。
+
+viewDidLoad方法
+viewDidLoad 此方法只有当view从nib文件初始化的时候才被调用。 重载重写该方法以进一步定制view 在iPhone OS 3.0及之后的版本中，还应该重载重写viewDidUnload来释放对view的任何索引 viewDidLoad后调用数据Model
+
+viewDidUnload方法
+当系统内存吃紧的时候会调用该方法（注：viewController没有被dealloc） 内存吃紧时，在iPhone OS 3.0之前didReceiveMemoryWarning是释放无用内存的唯一方式，但是OS 3.0及以后viewDidUnload方法是更好的方式 在该方法中将所有IBOutlet（无论是property还是实例变量）置为nil（系统release view时已经将其release掉了）
+在该方法中释放其他与view有关的对象、其他在运行时创建（但非系统必须）的对象、在viewDidLoad中被创建的对象、缓存数据等 release对象后，将对象置为nil（IBOutlet只需要将其置为nil，系统release view时已经将其release掉了）
+一般认为viewDidUnload是viewDidLoad的镜像，因为当view被重新请求时，viewDidLoad还会重新被执行
+viewDidUnload中被release的对象必须是很容易被重新创建的对象（比如在viewDidLoad或其他方法中创建的对象），不要release用户数据或其他很难被重新创建的对象
+dealloc方法
+viewDidUnload和dealloc方法没有关联，dealloc还是继续做它该做的事情
+
+##61. loadView与viewDidLoad不同
+
+一. loadView
+
+永远不要主动调用这个函数。view controller会在view的property被请求并且当前view值为nil时调用这个函数。如果你手动创建view，你应该重载这个函数,且不要在重载的时候调用[super loadview]。如果你用IB创建view并初始化view controller，那就意味着你使用initWithNibName:bundle:方法，这时，你不应该重载loadView函数。
+这个方法系统的默认实现是这样：
+
+1. 寻找有关可用的nib文件的信息，根据这个信息来加载nib文件       //所以，nib的加载过程是在loadview中完成的哦。
+2. 如果没有有关nib文件的信息，默认创建一个空白的UIView对象，然后把对象成赋值给viewcontroller的主view。
+所以，如果你决定重载这个函数时，你也应该完成这些步骤：
+把子类的view赋给view属性(property)（你create的view必须是唯一的实例，并且不被其他任何controller共享），而且你重载的这个函数不应该调用super，这个也是为了保持主view与controller的单一映射关系。
+
+二. viewDidLoad
+
+这个函数在controller加载了相关的views后被调用，而不论这些views存储在nib文件里还是在loadView函数中生成。
+这个函数的作用主要是让你可以进一步的初始化你的views。viewDidLoad通常负责的是view及其子view被加载进内存之后的数据初始化的工作，即视图的数据部分的初始化。在iOS 3.0以及更高版本中，你应该重载viewDidUnload函数来释放任何对view的引用或者它里面的内容（子view等等）。
+其多数情况下是做nib文件的后续工作。
+viewDidUnload
+这个函数是viewDidLoad的对立函数。在程序内存欠缺时，这个函数被controller调用，来释放它的view以及view相关的对象。由于controller通常保存着view以及相关object的引用，所以你必须使用这个函数来放弃这些对象的所有权以便内存回收。但不要释放那些难以重建的数据。
+通常controller会保存nib文件建立的views的引用，但是也可能会保存着loadView函数创建的对象的引用。最完美的方法是使用合成器方法：
+1 self.myCertainView = nil; 
+这样合成器会release这个view，如果你没有使用property，那么你得自己显式释放这个view。
+结论
+所以流程应该是这样：
+loadView来加载view（无论nib文件或自定义的views）到内存 ——>viewDidLoad函数进一步初始化这些view （通常是侧重于数据data的初始化）——>内存不足时，调用viewDidUnload函数释放views
+—->当需要使用view时又回到第一步
+如此循环
+
+需要厘清两个概念,创建一个类和实例化一个类.在XCode中创建一个类和实例化一个类很容易区分,但是在IB(Interface Builder)中有时候就会迷糊.其实也很好区分,孤零零地创建了一个nib文件,没有和其他可被实例化的类有直接或间接关系的时候,这个类或这些类(一个nib文件也可能包含多个类)是没有机会被实例化的,所以这种情况只是通过ib创建了一个类,而没有实例化.真正的实例化还需要通过在Xcode用代码来读取这个nib文件.知道这两这的区别后这些方法也就容易辨认多了
+viewDidLoad其实没什么可混淆的,无论通过什么途径加载(Xcode或者IB,这里的加载属于实例化)完view后肯定会执行这个方法.
+loadView需要分两种情况.当你通过Xcode实例化一个类的时候就需要自己在controller中实现这个方法.而在IB中实例化就不需要实现它.
+initWithNibName这个方法是在controller的类在IB中创建,但是通过Xcode实例化controller的时候用的.
+initWithCoder是一个类在IB中创建但在xocdde中被实例化时被调用的.比如,通过IB创建一个controller的nib文件,然后在xcode中通过initWithNibName来实例化这个controller,那么这个controller的initWithCoder会被调用.
+awakeFromNib 
+当.nib文件被加载的时候，会发送一个awakeFromNib的消息到.nib文件中的每个对象，每个对象都可以定义自己的awakeFromNib函数来响应这个消息，执行一些必要的操作。也就是说通过nib文件创建view对象时执行awakeFromNib 
+viewDidLoad 
+当view对象被加载到内存后就会执行viewDidLoad，所以不管通过nib文件还是代码的方式创建对象都会执行viewDidLoad 。
+
+##62. 栈区和堆区区别
+
+栈区（stack）―   由编译器自动分配释放 ，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。 
+
+堆区（heap） ―   一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表。
+程序的局部变量存在于（栈）中，全局变量存在于（静态区 ）中，动态申请数据存在于（ 堆）中
+这样说比较准确,所谓的栈其实是由寄存器ebp和esp指向的一片内存空间(ebp指向栈底,esp指向栈顶),原则上是由高地址向低地址生长的一片空间,会保存一些临时的数据,比如一个函数中的临时变量以及返回地址,数据的出入是先进后出,后进先出.
+全局变量实际上是存在一个(一般来说正常的编译器)可读可写的内存空间,这个空间是在你写程序编译好的空间地址(由编译器决定),是固定的.
+堆是由操作系统管理的一片空间,事先是没有在进程空间里分配的(比如你在没有分配堆的时候就访问堆空间会报一个内存访问错误),一般是由程序动态的分配出来,一旦分配了以后,一般需要程序去释放自己的堆空间.
+这只是简单的描述一下概念,如果要深入讲这三个空间的结构还是有些复杂度的。
+
+##63. Object-C有私有方法吗？私有变量呢？
+
+没有私有方法，但有私有变量。
+
+##64. 多线程安全
+
+@synchronized
+
+NSlock
+
+##65. GCD的使用
+
+如果不使用GCD，做下载操作需要3步开始下载 –> 下载中 –> 下载完成
+且需要传递数据参数，代码变得更加散落，代码的可读性大大降低。
+使用GCD后，代码变清楚了，虽然是异步的代码，但是它们被GCD合理的整合在一起，逻辑非常清晰。
+
+例子：
+
+![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/pasted_graphic2.jpg)
+
