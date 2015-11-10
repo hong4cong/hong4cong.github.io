@@ -202,7 +202,7 @@ SYN:请求同步/同步序列号 ACK:应答同步/确认字段
 
 ##36. 二叉树
 
-![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/PastedGraphic.jpg)
+![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/pasted_graphic.jpg)
 
 ##37. 二叉树遍历方法
 
@@ -221,7 +221,7 @@ SYN:请求同步/同步序列号 ACK:应答同步/确认字段
  
 ##39. 我们把构造连通网的最小代价生成树 称为最小生成树
 
-![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/PastedGraphic2.jpg)
+![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/pasted_graphic2.jpg)
 
 ##40. 排序算法
 
@@ -234,9 +234,10 @@ SYN:请求同步/同步序列号 ACK:应答同步/确认字段
  ![img1] 
 7. 快速排序：快速排序 (Quick Sort) 的基本思想是:通过一趟排序将待排记录分割成独立的 两部分,其中一部分记录的关键字均比另 一部分记录的关键字小,则可分别对这两部 分记录继续进行排序,以达到整个序列有序的目的
  
-[img1]: https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/PastedGraphic3.jpg
+[img1]: https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/pasted_graphic3.jpg
 
 ##41. IOS 消息机制
 iOS 提供了一种 "同步的" 消息通知机制，观察者只要向消息中心注册， 即可接受其他对象发送来的消息，消息发送者和消息接受者两者可以互相一无所知，完全解耦。
 
 ##42. Block
+
