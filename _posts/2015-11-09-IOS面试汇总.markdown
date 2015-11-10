@@ -455,5 +455,162 @@ NSlock
 
 例子：
 
-![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/pasted_graphic2.jpg)
+![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/pasted_graphic5.jpg)
 
+合并执行：
+
+![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/pasted_graphic6.jpg)
+
+##66. 工厂模式的优点
+
+工厂模式就是专门负责将大量有共同接口的类实例化,而且不必事先知道每次是要实例化哪一个类的模式。它定义一个用于创建对象的接口，由子类决定实例化哪一个类
+
+1. 在编码时不能预见需要创建哪一种类的实例。 
+2. 一个类使用它的子类来创建对象。 
+3. 开发人员不希望创建了哪个类的实例以及如何创建实例的信息暴露给外部程序。
+
+##67. 抽象类和接口有什么区别？（瞬联）
+
+1. abstract class 在 Java 语言中表示的是一种继承关系，一个类只能使用一次继承关系。但是，一个类却可以实现多个interface。
+
+2. 在abstract class 中可以有自己的数据成员，也可以有非abstarct的成员方法，而在interface中，只能够有静态的不能被修改的数据成员（也就是必须是static final的，不过在 interface中一般不定义数据成员），所有的成员方法都是abstract的。
+
+3. abstract class和interface所反映出的设计理念不同。其实abstract class表示的是"is-a"关系，interface表示的是"like-a"关系。
+
+4. 实现抽象类和接口的类必须实现其中的所有方法。抽象类中可以有非抽象方法。接口中则不能有实现方法。
+
+5. 接口中定义的变量默认是public static final 型，且必须给其初值，所以实现类中不能重新定义，也不能改变其值。
+
+6. 抽象类中的变量默认是 friendly 型，其值可以在子类中重新定义，也可以重新赋值。
+
+7. 接口中的方法默认都是 public,abstract 类型的。
+
+##68. TCP/IP协议
+
+传输控制协议/因特网互联协议，又名网络通讯协议，由网络层的IP协议和传输层的TCP协议组成
+
+![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/tcp网络传输.jpg)
+
+##69. BAD_ACCESS在什么情况下出现？
+
+访问了野指针，比如对一个已经释放的对象执行了release、访问已经释放对象的成员变量或者发消息。 死循环
+
+##70. 如何把一个包含自定义对象的数组序列化到磁盘？
+
+NSCoding协议
+
+##71. iOS 的签名机制大概是怎样的？
+
+公钥私钥
+
+##72. +load 和 +initialize 的区别是什么
+
+load 类加载的时候调用，initialize 实例对象创建的调用时候
+
+##73. NSOperation 相比于 GCD 有哪些优势？
+
+便捷，更加容易
+
+##74. UIView 和 CALayer 之间的关系？
+
+UIView真正的绘图部分，是由一个叫CALayer来管理。UIView本身，更像是一个CALayer的管理器，访问它的跟绘图和跟坐标有关的属性，例如frame，bounds等等，实际上内部都是在访问它所包含的CALayer的相关属性。
+
+##75. frame 和 bounds 的区别是什么？
+
+frame: 该view在父view坐标系统中的位置和大小。（参照点是，父亲的坐标系统）
+
+bounds：该view在本地坐标系统中的位置和大小。（参照点是，本地坐标系统，就相当于ViewB自己的坐标系统，以0,0点为起点）
+
+
+#76. 一个 App 会处于哪些状态？
+
+详细：<http://blog.csdn.net/totogo2010/article/details/8048652>
+应用程序的状态
+
+Not running  未运行  程序没启动
+
+Inactive            未激活        程序在前台运行，不过没有接收到事件。在没有事件处理情况下程序通常停留在这个状态
+
+Active              激活           程序在前台运行而且接收到了事件。这也是前台的一个正常的模式
+
+Backgroud     		后台           程序在后台而且能执行代码，大多数程序进入这个状态后会在在这个状态上停留一会。时间到之后会进入挂起状态(Suspended)。有的程序经过特殊的请求后可以长期处于Backgroud状态
+
+Suspended    		挂起           程序在后台不能执行代码。系统会自动把程序变成这个状态而且不会发出通知。当挂起时，程序还是停留在内存中的，当系统内存低时，系统就把挂起的程序清除掉，为前台程序提供更多的内存。
+
+##77. runtime如何实现weak变量的自动置nil？
+
+runtime 对注册的类， 会进行布局，对于 weak 对象会放入一个 hash 表中。 用 weak 指向的对象内存地址作为 key，当此对象的引用计数为0的时候会 dealloc，假如 weak 指向的对象内存地址是a，那么就会以a为键， 在这个 weak 表中搜索，找到所有以a为键的 weak 对象，从而设置为 nil。
+
+##78. 什么是 Runloop？
+
+<http://www.cocoachina.com/ios/20150601/11970.html>
+
+Runloop是事件接收和分发机制的一个实现。
+    Runloop提供了一种异步执行代码的机制，不能并行执行任务。
+    在主队列中，Main RunLoop直接配合任务的执行，负责处理UI事件、定时器以及其他内核相关事件。
+
+RunLoop的主要目的：
+    保证程序执行的线程不会被系统终止。    
+
+什么时候使用Runloop ?
+当需要和该线程进行交互的时候才会使用Runloop.
+每一个线程都有其对应的RunLoop，但是默认非主线程的RunLoop是没有运行的，需要为RunLoop添加至少一个事件源，然后去run它。一般情况下我们是没有必要去启用线程的RunLoop的，除非你在一个单独的线程中需要长久的检测某个事件。
+    主线程默认有Runloop。当自己启动一个线程，如果只是用于处理单一的事件，则该线程在执行完之后就退出了。所以当我们需要让该线程监听某项事务时，就得让线程一直不退出，runloop就是这么一个循环，没有事件的时候，一直卡着，有事件来临了，执行其对应的函数。
+    
+    Runloop，正如其名所示，是线程进入和被线程用来响应事件以及调用事件处理函数的地方。需要在代码中使用控制语句实现run loop的循环，也就是说，需要代码提供while 或者 for循环来驱动run loop。
+    在这个循环中，使用一个Runloop对象[NSRunloop currentRunloop]执行接收消息，调用对应的处理函数。
+    Runloop接收两种源事件:input sources和timer sources。
+    input sources 传递异步事件，通常是来自其他线程和不同的程序中的消息；
+    timer sources(定时器) 传递同步事件（重复执行或者在特定时间上触发）。
+    除了处理input sources，Runloop 也会产生一些关于本身行为的notificaiton。注册成为Runloop的observer，可以接收到这些notification，做一些额外的处理。（使用CoreFoundation来成为runloop的observer）。
+Runloop工作的特点：
+		
+1. 当有事件发生时，Runloop会根据具体的事件类型通知应用程序作出响应；
+2. 当没有事件发生时，Runloop会进入休眠状态，从而达到省电的目的；
+3. 当事件再次发生时，Runloop会被重新唤醒，处理事件。
+提示：一般在开发中很少会主动创建Runloop，而通常会把事件添加到Runloop中。
+
+##79. 为什么 NotificationCenter 要 removeObserver? 如何实现自动 remove?
+
+一般observer的机制模式，观察者应该都是assign的，出现问题，一般都是观察者释放掉，被观察者向一个以释放的观察者发通知就出现了野指针，个人认为！！ 
+实现自释放的方法可以总结为以下三种方式
+
+1. 动态属性的自释放
+2. @property 的自释放
+3. swizzling dealloc的自释放
+
+##80. Toll-Free Bridging 是什么？什么情况下会使用？
+
+在 Core Foundation 和 Foundation 之间交换使用数据类型的技术就叫 Toll-Free Bridging.
+NSString和CFStringRef之间转换
+
+##81. 为什么 UIScrollView 的滚动会导致 NSTimer 失效？
+
+原因是拖动时，主线程的RunLoop切换到UITrackingRunLoopMode模式，而定时器在NSDefaultRunLoopMode模式。
+将定时器添加到标记为common modes的模式下
+
+##82. 使用 Block 时需要注意哪些问题
+
+1. block 在实现时就会对它引用到的它所在方法中定义的栈变量进行一次只读拷贝，然后在 block 块内使用该只读拷贝。
+2. 非内联（inline） block 不能直接访问 self，只能通过将 self 当作参数传递到 block 中才能使用，并且此时的 self 只能通过 setter 或 getter 方法访问其属性，不能使用句点式方法。但内联 block 不受此限制。
+
+##83. 如何播放 GIF 图片，有什么优化方案么？
+
+连续动画，UIWebView实现
+[webView loadData:gif MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
+
+
+##84. ARC通过什么方式帮助开发者管理内存？
+
+ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单。应该是编译期和运行期两部分共同帮助开发者管理内存。
+在编译期，ARC用的是更底层的C接口实现的retain/release/autorelease，这样做性能更好，也是为什么不能在ARC环境下手动retain/release/autorelease，同时对同一上下文的同一对象的成对retain/release操作进行优化
+
+##85. lldb（gdb）常用的调试命令？
+
+	·	breakpoint 设置断点定位到某一个函数
+	·	n 断点指针下一步
+	·	po打印对象
+	
+##86. KVO的实现
+
+![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/687474703a2f2f6936322e74696e797069632e636f6d2f7379353775722e6a7067.png)
