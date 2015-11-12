@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "IOS-面试汇总"
-date:   2015-11-09 10:23:32
+title:  "Objective-C Runtime"
+date:   2015-11-11 11:23:32
 categories: IOS
 ---
 
-##1. abcdefasdefwefwefw中adc出现的次数
-hashmap
+##1. 使用Git/Github搭建协同开发环境
+[Git环境搭建](http://www.cnblogs.com/zemliu/archive/2012/09/05/2671843.html)
 
 ##2. 10个员工中快速找出 年纪最大的员工
 `堆排序`
@@ -55,7 +55,6 @@ IOS提供了一个环境变量设置来帮忙定位错误位置的信息描述�
 
 ##13. IOS 推送机制
 Apple Push Notification Service
-
 1. 首先是应用程序注册消息推送。
 2. IOS跟APNS Server要deviceToken。应用程序接受deviceToken。
 3. 应用程序将deviceToken发送给PUSH服务端程序。
