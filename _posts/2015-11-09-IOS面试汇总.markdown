@@ -268,7 +268,11 @@ KVC(Key-Value-Coding)内部的实现：一个对象在调用setValue的时候:
 
 （2）他会从自己isa指针结合环境参数，找到具体的方法实现的接口。
 
-（3）再直接查找得来的具体的方法实现。KVO（Key-Value- Observing）：当观察者为一个对象的属性进行了注册，被观察对象的isa指针被修改的时候，isa指针就会指向一个中间类，而不是真实的类。所以 isa指针其实不需要指向实例对象真实的类。所以我们的程序最好不要依赖于isa指针。在调用类的方法的时候，最好要明确对象实例的类名
+（3）再直接查找得来的具体的方法实现。
+
+KVO（Key-Value- Observing）：
+
+当观察者为一个对象的属性进行了注册，被观察对象的isa指针被修改的时候，isa指针就会指向一个中间类，而不是真实的类。所以 isa指针其实不需要指向实例对象真实的类。所以我们的程序最好不要依赖于isa指针。在调用类的方法的时候，最好要明确对象实例的类名
 
 ##45. 浅复制和深复制
 
@@ -335,17 +339,16 @@ CoreFoundation：Core Foundation框架 (CoreFoundation.framework) 是一组C语
 
 1. `performSelector`
 2. `gcd`
-  
-dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        // 处理耗时操作的代码块...
-        
-        //通知主线程刷新
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //回调或者说是通知主线程刷新，
-        });
-        
-    });
 
+		dispatch_async(dispatch_get_global_queue(0, 0), ^ {
+        	// 处理耗时操作的代码块...
+        	//通知主线程刷新
+        	dispatch_async(dispatch_get_main_queue(), ^{
+            //回调或者说是通知主线程刷新，
+        	});
+        
+    	});
+    
 ##56. category 和 extension区别
 
 1. 形式上来看，extension是匿名的category。

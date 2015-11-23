@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "翻墙工具介绍"
+date:   2015-11-23 10:23:32
+categories: 随笔
+---
+#翻墙工具* [Goagent](https://zh.wikipedia.org/zh/GoAgent)* [Shadowsocks](http://vc2tea.com/whats-shadowsocks/)这是2个常用的翻墙工具
+最近收费的VPN大量被封，所以抽时间搞了下Shadowsocks
+##为什么要适用翻墙工具！
+正常情况是我们访问网络如下图：
+![icon](../images/2015.11.23/whats-shadowsocks-01.png)[GFW](https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E)出现后，每当用户获取信息，都经过了GFW，当用户触发GFW的过滤规则的时候，就会收到Connection Reset这样的响应内容，而无法接收到正常的内容
+![icon2](../images/2015.11.23/whats-shadowsocks-02.png)
+为了解决GFW过滤问题，大牛们尝试了各种HTTPS代理服务、Socks服务、VPN服务等，其中以 `ssh tunnel` 的方法比较有代表性。用于ssh基于RSA加密技术，所以GFW无法从数据传输的过程中的加密数据内容进行关键词分析，避免了被重置链接的问题，但由于创建隧道和数据传输的过程中，ssh 本身的特征是明显的，所以GFW一度通过分析连接的特征进行干扰，导致 ssh存在被定向进行干扰的问题。
+![icon3](../images/2015.11.23/whats-shadowsocks-03.png)
+##Goagent
+早年用过Goagent，但是体验比较差，配置较麻烦。操蛋的是需要登录Google开发账号，被墙了完全登录不上。
+
+GoAgent的运行原理与其他代理工具基本相同，使用特定的中转服务器完成数据传输。它使用Google App Engine的服务器作为中传，将数据包后发送至Google服务器，再由Google服务器转发至目的服务器，接收数据时方法也类似
+
+由于防火长城的屏蔽策略调整，Google IP 被悉数封锁，因而该工具的破网效率已大不如前。
+2015年8月25日，在Shadowsocks被删除之后，GoAgent的开发者也删除了该项目。
+
+##Shadowsocksshadowsocks 是将原来 ssh 创建的 Socks5 协议拆开成 server 端和 client 端，所以下面这个原理图基本上和利用 ssh tunnel 大致类似![icon4](../images/2015.11.23/whats-shadowsocks-04.png)
+
+###为什么用shadowsocks？
+* 配置简单：只需一次输入服务器ip地址、端口号、加密方式，随时即可轻松代理
+
+* 跨平台：window、mac、Linux、ios、android安装客户端，一样轻松
+
+* 与vpn差异
+
+vpn | shadowsocks 
+------------ | ------------- 
+简单，一键翻墙 | 简单，一键翻墙 
+全局，代理浏览器、各种app、所有走网络的都经过vpn服务器 | 只有浏览器(可以手动设置代理其他app)
+免费、收费服务商很多 | 免费、收费服务商很多
+速度可以 | 速度很快，香港、新加坡几十毫秒
+平台性稍差，有些做的也不错了，总体跨平台性差 | 支持各平台客户端，跨平台性强
+
+###客户端怎么使用？
+在<https://shadowsocks.com/client.html>里面选择一个合适你的客户端
+
+###账号资源
+
+shadowsocks 客户端是很强大、稳定、快速的，跨平台，省去很多麻烦，但这依赖与稳定的服服务端，你可以自己购买vps ，搭建shadowsocks的服务器端，只需要vps的钱即可，shadowsocks 服务端开源免费（还是得感谢shadowsocks作者 @clowwindy的无私奉献），可以去github下载搭建，参考搭建教程，也可以购买市场上许多服务商提供的服务，相比自己搭建，还得需要去关心服务器的稳定性， xirong 更推荐使用经济的代理服务商，便宜省事，当然，你也可以到网上到处搜寻免费的 shadowsocks账号，这也是可以的。
+
+####免费账号
+
+在<http://www.ishadowsocks.com/>上有免费shadowsocks帐号，每六个小时更换一次，如果不是要求特别高，可以免费用着，上面也由各个平台如何适用的图文说明，非常细致，这里就不阐述了。
+
+####收费账号
+
+也可以节省时间选择付费的第三方服务
+<shadowsocks.com> (这并非官方网站，是第三方提供的)
+蛋疼的是他的普通版，同时只能一台设备使用(女朋友怎么办...)
+<br/>        
+<br/> 
+如有任何问题，欢迎联系我交流
