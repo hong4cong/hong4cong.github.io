@@ -8,10 +8,10 @@ categories: 随笔
 最近收费的VPN大量被封，所以抽时间搞了下Shadowsocks
 ##为什么要适用翻墙工具！
 正常情况是我们访问网络如下图：
-![icon](../images/2015.11.23/whats-shadowsocks-01.png)[GFW](https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E)出现后，每当用户获取信息，都经过了GFW，当用户触发GFW的过滤规则的时候，就会收到Connection Reset这样的响应内容，而无法接收到正常的内容
-![icon2](../images/2015.11.23/whats-shadowsocks-02.png)
+![icon](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.23/whats-shadowsocks-01.png)[GFW](https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E)出现后，每当用户获取信息，都经过了GFW，当用户触发GFW的过滤规则的时候，就会收到Connection Reset这样的响应内容，而无法接收到正常的内容
+![icon2](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.23/whats-shadowsocks-02.png)
 为了解决GFW过滤问题，大牛们尝试了各种HTTPS代理服务、Socks服务、VPN服务等，其中以 `ssh tunnel` 的方法比较有代表性。用于ssh基于RSA加密技术，所以GFW无法从数据传输的过程中的加密数据内容进行关键词分析，避免了被重置链接的问题，但由于创建隧道和数据传输的过程中，ssh 本身的特征是明显的，所以GFW一度通过分析连接的特征进行干扰，导致 ssh存在被定向进行干扰的问题。
-![icon3](../images/2015.11.23/whats-shadowsocks-03.png)
+![icon3](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.23/whats-shadowsocks-03.png)
 ##Goagent
 早年用过Goagent，但是体验比较差，配置较麻烦。操蛋的是需要登录Google开发账号，被墙了完全登录不上。
 
@@ -20,7 +20,7 @@ GoAgent的运行原理与其他代理工具基本相同，使用特定的中转�
 由于防火长城的屏蔽策略调整，Google IP 被悉数封锁，因而该工具的破网效率已大不如前。
 2015年8月25日，在Shadowsocks被删除之后，GoAgent的开发者也删除了该项目。
 
-##Shadowsocksshadowsocks 是将原来 ssh 创建的 Socks5 协议拆开成 server 端和 client 端，所以下面这个原理图基本上和利用 ssh tunnel 大致类似![icon4](../images/2015.11.23/whats-shadowsocks-04.png)
+##Shadowsocksshadowsocks 是将原来 ssh 创建的 Socks5 协议拆开成 server 端和 client 端，所以下面这个原理图基本上和利用 ssh tunnel 大致类似![icon4](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.23/whats-shadowsocks-04.png)
 
 ###为什么用shadowsocks？
 * 配置简单：只需一次输入服务器ip地址、端口号、加密方式，随时即可轻松代理
