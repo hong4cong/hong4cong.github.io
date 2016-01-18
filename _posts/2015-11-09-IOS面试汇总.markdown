@@ -618,3 +618,31 @@ ARC相对于MRC，不是在编译时添加retain/release/autorelease这么简单
 ##86. KVO的实现
 
 ![img](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.09/687474703a2f2f6936322e74696e797069632e636f6d2f7379353775722e6a7067.png)
+
+##87. Objective-c中block使用时的循环引用问题
+
+我们很多行为会导致Block的copy，而当Block被copy时，会对block中用到的对象产生强引用(ARC下)或者引用计数加一(non-ARC下)。例如：
+
+```
+@property(nonatomic, readwrite, copy) completionBlock completionBlock;
+
+self.completionBlock = ^ {
+       if (self.success) {
+            	self.success(self.responseData);
+       }
+};
+```
+
+对象有一个Block属性，然而这个Block属性中又引用了对象的其他成员变量，那么就会对这个变量本身产生强引用，那么变量本身和他自己的Block属性就形成了循环引用。在ARC下需要修改成这样
+
+```
+@property(nonatomic, readwrite, copy) completionBlock completionBlock;
+__weak typeof(self) weakSelf = self;
+self.completionBlock = ^ {
+    if (weakSelf.success) {
+        weakSelf.success(weakSelf.responseData);
+    }
+};
+
+```
+

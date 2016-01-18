@@ -1,0 +1,37 @@
+---
+layout: post
+title:  "iOS8/iOS9企业版安装的问题 "
+date:   2015-12-22 07:23:32
+categories: 随笔
+---
+
+#iOS8/iOS9企业版安装的问题 
+
+转载 ：http://blog.chinaunix.net/uid-29439762-id-4830442.html
+首先要吐槽下国内的论坛水分略多，以下问题大多是查询stackoverflow等论坛解决的。
+推荐一款软件，Log Guru，用来查看app安装时的系统日志，很多问题要看日志才知道错误点。
+
+1.首先有几个比较基础的问题：<br/>
+（1）若要在网页上安装app，则iOS7.1及以后的plist文件的下载地址要放在https的网址下，而ipa文件下载地址不一定要https。<br/>
+（2）ipa文件放到服务器上时，要设置下iis的ipa文件下载支持，否则点击下载后会图标一直停留在“等待中”。<br/>
+（3）程序下载安装时，快安装完成时，图标的显示突然回退，那就是provisioning profile的问题了，查看日志会看到类似下面的信息，遇到这种情况你得检查下provisioning profile是否正确了：
+
+	installd?entitlement 'get-task-allow' has value not permitted by provisioning profile 
+
+2.iOS8安装到3分之2左右的时候停止，然后弹出“此时无法安装应用程序”的提示框。
+        我遇到这种情况时以为是签名或者provisioning profile的错误，然后各种检查重新发布，但是没有解决。查看日志后发现这样一条错误：
+
+	0x1022dc000 -[MIContainer makeContainerLiveReplacingContainer:withError:]: Made container live for com.kmvc.myapp at...
+	
+然后在stackoverflow上找到同样的问题，下面有这么一条回答：（地址：http://stackoverflow.com/questions/25760484/ios8-beta-ad-hoc-app-download-itms-services），主要的答案是这么说的：
+	
+	Specify a 'display-image' and 'full-size-image' as described here:http://www.informit.com/articles/article.aspx?p=1829415&seqNum=16
+	iOS8 requires these images
+        也就是说iOS8的下载安装是必须要display-image和full-size-image这两个文件，文件地址要和你的plist文件中写的一致。因为之前iOS7的安装没有这两个图片文件也可以安装，就一直疏忽了，也没想到会是这个导致的无法安装，经过这次事情后得严格按照苹果的规范了，不然真是出了问题都很难发现。
+
+3.之前安装过该app的iOS8系统点击安装后没有反应。
+        还是查看日志，只有一条记录：
+
+	LoadExternalDownloadManifestOperation: Ignore manifest download, already have bundleID: com.mycom.MyApp
+
+遇到这种情况，我按照论坛上说的（http://stackoverflow.com/questions/25772664/enterprise-app-update-distribution-on-ios-8#）更改plist文件的bundle ID（是下载时用的plist文件不是项目的bundle ID），然后重新点击就可以下载安装了。
