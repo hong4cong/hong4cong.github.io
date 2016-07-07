@@ -52,6 +52,10 @@ shadowsocks 客户端是很强大、稳定、快速的，跨平台，省去很�
 
 在<http://www.ishadowsocks.com/>上有免费shadowsocks帐号，每六个小时更换一次，如果不是要求特别高，可以免费用着，上面也由各个平台如何适用的图文说明，非常细致，这里就不阐述了。
 
+<http://www.dou-bi.com/sszhfx/>
+
+<http://xknow.net/shadowsocks/>
+
 ####收费账号
 
 也可以节省时间选择付费的第三方服务
