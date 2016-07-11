@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="市内搬家,同城搬家" />
+    <meta name="description" content="年终盘点，看看我用蓝犀牛拉货、搬家的那些激情岁月!" />
+    <title>充值即送优惠券</title>
+    <link href="http://static.lanxiniu.cn/Public/img/public/lanxiniu.ico" rel="shortcut icon">
+    <link rel="stylesheet" type="text/css" href="http://static.lanxiniu.cn/Public/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="http://static.lanxiniu.cn/Public/wap2/yearactivity/yuchong/css/pre_charge.css">
+    <script type="text/javascript" src="http://static.lanxiniu.cn/Public/zepto/zepto.min.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?eed2ecdd5e388c7ebb10fb90ca022a3f";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- 头部图片 -->
+        <img src="http://static.lanxiniu.cn/Public/wap2/yearactivity/yuchong/img/1.png" alt="">
+        <if condition="$cityFlag eq 1 ">
+        <!-- 北上广天津 -->
+            <img src="http://static.lanxiniu.cn/Public/wap2/yearactivity/yuchong/img/2.png" alt="">
+        </if>
+        <if condition="$cityFlag eq 2 ">
+        <!-- 杭州等城市 -->
+            <img src="http://static.lanxiniu.cn/Public/wap2/yearactivity/yuchong/img/3.png" alt="">
+        </if>
+        <img style="margin-top:.6rem;" src="http://static.lanxiniu.cn/Public/wap2/yearactivity/yuchong/img/6.png" alt="">
+    </div>
+    <!-- 微信分享 -->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        var share_title = '蓝犀牛货运  充值送红包';
+        var share_desc = '蓝犀牛货运 ,5公里仅需28元,15秒响应,30分钟必达';                   
+        var share_link = '{$shareUrl}/YearActivity/getPreCharge?fr={$fr}';
+        var share_img_url = 'http://static.lanxiniu.cn/Public/wap2/yearactivity/yuchong/img/share.png';                       
+        wx.config({
+            debug: false,
+            appId: '{$appId}', 
+            timestamp: '{$timestamp}', 
+            nonceStr: '{$nonceStr}', 
+            signature: '{$signature}', 
+            jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
+        });
+                    
+        wx.ready(function() {
+            //分享到朋友圈
+            wx.onMenuShareTimeline({
+                title: share_title,
+                desc: share_desc,
+                link: share_link,
+                imgUrl: share_img_url
+            });
+            //分享到朋友
+            wx.onMenuShareAppMessage({
+                title: share_title,
+                desc: share_desc,
+                link: share_link,
+                imgUrl: share_img_url
+            });
+            //分享到QQ
+            wx.onMenuShareQQ({
+                title: share_title,
+                desc: share_desc,
+                link: share_link,
+                imgUrl: share_img_url
+            });
+            //分享到腾讯微博
+            wx.onMenuShareWeibo({
+                title: share_title,
+                desc: share_desc,
+                link: share_link,
+                imgUrl: share_img_url
+            });
+            //分享到QQ空间
+            wx.onMenuShareQZone({
+                title: share_title,
+                desc: share_desc,
+                link: share_link,
+                imgUrl: share_img_url
+            });
+        });
+    </script>
+    <script>
+        (function () {
+            function o() {
+                document.documentElement.style.fontSize = (document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth) /16 + "px"
+            }
+            var e = null;
+            window.addEventListener("resize", function () {
+                clearTimeout(e), e = setTimeout(o, 300)
+            }, !1), o()
+        })(window);
+    </script>
+</body>
+</html>
