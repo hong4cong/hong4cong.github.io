@@ -916,4 +916,8 @@ GCD比NSThread 开销大
 
 ##100 iOS socket
 
+[关于iOS socket都在这里了](http://www.jianshu.com/p/3e4f3de18e3b#)
+
+![img](https://raw.githubusercontent.com/hong4cong/hong4cong.github.io/master/images/2016.11.22/1170656-6b9392fad31b711d.png)
+
 
