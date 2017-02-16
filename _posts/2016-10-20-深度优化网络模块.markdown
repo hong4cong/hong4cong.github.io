@@ -6,12 +6,12 @@ categories: iOS
 ---
 转载“MrPeak技术分享” 博客地址http://mrpeak.cn/
 
-#[深度优化iOS网络模块]
-[深度优化iOS网络模块]:http://mrpeak.cn/blog/ios-network/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io
+[深度优化iOS网络模块](http://mrpeak.cn/blog/ios-network/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 * DNS映射
-无论是HTTP还是Socket长连接，第一步都是DNS解析。域名根据层级「主机名.次级域名.顶级域名.根域名」去解析，每一级缓存生命周期不同。在iOS设备上几乎每次断网重连，重启设备都会使DNS缓存失效，触发重新查询。DNS一般有都缓存，这一步的优化对请求的延迟来说至关重要，具体优化参考[DNS映射的文章][DNS映射]，配有可用的demo。
-[DNS映射]:http://mrpeak.cn/ios/2016/01/22/dnsmapping
+  无论是HTTP还是Socket长连接，第一步都是DNS解析。域名根据层级「主机名.次级域名.顶级域名.根域名」去解析，每一级缓存生命周期不同。在iOS设备上几乎每次断网重连，重启设备都会使DNS缓存失效，触发重新查询。DNS一般有都缓存，这一步的优化对请求的延迟来说至关重要，具体优化参考[DNS映射的文章](http://mrpeak.cn/ios/2016/01/22/dnsmapping)，配有可用的demo。
+
+
 * 请求压缩
 * 请求合并
 * 请求的安全性 https,非对称加密
