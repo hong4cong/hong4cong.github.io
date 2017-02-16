@@ -5,9 +5,18 @@ date:   2015-11-23 10:23:32
 categories: 随笔
 ---
 
-#翻墙工具 [Goagent](https://zh.wikipedia.org/zh/GoAgent) [Shadowsocks](http://vc2tea.com/whats-shadowsocks/)这是2个常用的翻墙工具
+## 翻墙工具 
+
+* [Goagent](https://zh.wikipedia.org/zh/GoAgent) 
+
+
+* [Shadowsocks](http://vc2tea.com/whats-shadowsocks/) 
+
+这是2个常用的翻墙工具
+
 最近收费的VPN大量被封，所以抽时间搞了下Shadowsocks
-##为什么要适用翻墙工具！
+## 为什么要适用翻墙工具！
+
 正常情况是我们访问网络如下图：
 ![icon](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.23/whats-shadowsocks-01.png)[GFW](https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E)出现后，每当用户获取信息，都经过了GFW，当用户触发GFW的过滤规则的时候，就会收到Connection Reset这样的响应内容，而无法接收到正常的内容
 ![icon2](https://github.com/hong4cong/hong4cong.github.io/raw/master/images/2015.11.23/whats-shadowsocks-02.png)
